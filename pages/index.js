@@ -1,5 +1,4 @@
 import Head from "next/head";
-import AllProducts from "../components/home/AllProducts";
 import ProductLists from "../components/home/ProductLists";
 import Landing from "../components/home/Landing";
 import Special from "../components/home/Special";
@@ -74,7 +73,6 @@ export default function Home() {
         products={allProducts}
       />
       <Special />
-      {/* <AllProducts /> */}
     </>
   );
 }
