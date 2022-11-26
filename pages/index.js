@@ -4,6 +4,7 @@ import ProductLists from "../components/home/ProductLists";
 import Landing from "../components/home/Landing";
 import Special from "../components/home/Special";
 import Banner from "../components/home/Banner";
+import Catagory from "../components/home/Catagory";
 
 const trendingProducts = [
   {
@@ -65,6 +66,7 @@ export default function Home() {
         showBtn={false}
       />
       <Banner />
+      <Catagory />
       <ProductLists
         className="bg-gray-100"
         tag="Regulars"

@@ -1,3 +1,5 @@
+import { AiOutlineShopping } from "react-icons/ai";
+
 const images = [
   "https://images.pexels.com/photos/2584269/pexels-photo-2584269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   "https://images.pexels.com/photos/2446655/pexels-photo-2446655.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
@@ -12,7 +14,7 @@ function Banner() {
       <div className="absolute w-full h-full inset-0 flex items-center justify-between gap-[1px]">
         {images.map((data, id) => (
           <div className="flex-1 h-[650px] bg-black" key={id}>
-            <img src={data} className="opacity-50"/>
+            <img src={data} className="opacity-50" />
           </div>
         ))}
       </div>
@@ -24,6 +26,9 @@ function Banner() {
             # The winter season has come.
           </h2>
           <p>What are you waiting. Shop now.</p>
+          <div className="text-white w-fit mx-auto text-5xl ">
+            <AiOutlineShopping />
+          </div>
         </div>
       </div>
     </section>
