@@ -1,8 +1,4 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import FilteredProducts from "./FilteredProducts";
-import FilterOptions from "./FilterOptions";
+import ProductAtCart from "../design/ProductAtCart";
 
 const trendingProducts = [
   {
@@ -45,37 +41,21 @@ const trendingProducts = [
   },
 ];
 
-function Main() {
-  const router = useRouter();
-
+function ProductList() {
   return (
-    <section className="py-16">
-      <div className="container space-y-6">
-        <div
-          className="w-full flex items-center gap-2 py-3 bg-white
-         sticky top-[4.5rem] border-b z-30 border-b-black"
-        >
-          <Link className="text-gray-500 hover:text-black" href="/">
-            Home
-          </Link>{" "}
-          -{" "}
-          <Link className="text-gray-500 hover:text-black" href="/category">
-            Collections
-          </Link>{" "}
-          - <p className="text-base">{router.query.slug}</p>
-        </div>
+    <section className="space-y-5">
+      <div className="flex items-center justify-between gap-4">
+        <p className="font-bold">Products in your cart</p>
+        <p className="text-base"> Total 9 items.</p>
+      </div>
 
-        <div className="flex items-start gap-8">
-          <div className="flex-0 sticky top-[8.6rem]">
-            <FilterOptions />
-          </div>
-          <div className="flex-1">
-            <FilteredProducts data={trendingProducts} />
-          </div>
-        </div>
+      <div className="space-y-4">
+        {trendingProducts?.map((data) => (
+          <ProductAtCart data={data} key={data.id} />
+        ))}
       </div>
     </section>
   );
 }
 
-export default Main;
+export default ProductList;

@@ -7,12 +7,12 @@ function FilterOptions() {
   return (
     <section className=" w-full h-full border border-black bg-gray-200">
       <p className="font-bold text-2xl px-8 py-3 bg-gray-100 border-b border-black">
-        Apply filters
+        Filters
       </p>
 
       <div className="p-5 px-8 space-y-4">
         <div className="space-y-1">
-          <p className="font-semibold">Filter option</p>
+          <p className="font-semibold">Category</p>
           <div>
             <div className="flex gap-2 items-center">
               <input type="checkbox" id="1" value="1" />
@@ -30,10 +30,11 @@ function FilterOptions() {
         </div>
 
         <div className="space-y-1">
-          <p className="font-semibold">Filter price</p>
+          <p className="font-semibold">Price</p>
           <div className="flex gap-2 items-center">
             <span className="font-thin">0</span>
             <input
+              className="slider w-full h-1 bg-black outline-none rounded-lg appearance-none cursor-pointer "
               type="range"
               min={199}
               max={999}

@@ -2,8 +2,8 @@ import Link from "next/link";
 
 function Card({ data }) {
   return (
-    <card className="space-y-4">
-      <div className="w-full h-[300px] bg-white group">
+    <card className="space-y-4 p-3 bg-white border-2 border-gray-200 group hover:border-black">
+      <div className="w-full h-[300px] bg-white">
         <div className="absolute inset-4 w-min h-fit  flex items-center gap-1 z-20">
           {data.isHot && (
             <p className="py-1 px-2 text-sm bg-red-700 text-white">Hot</p>
@@ -19,7 +19,7 @@ function Card({ data }) {
           loading="lazy"
           src={data.img}
           alt={data.name}
-          className="z-10 group-hover:opacity-0 duration-75 object-top"
+          className="z-10 group-hover:opacity-0 duration-250 ease-in-out object-top"
         />
         <img
           loading="lazy"
@@ -28,7 +28,7 @@ function Card({ data }) {
           className="absolute inset-0 h-full w-full object-top"
         />
       </div>
-      <div className="space-y-1">
+      <div className="px-1">
         <p className="font-semibold">{data.name}</p>
         <p className="text-base font-thin">
           {Intl.NumberFormat("en-IN", {
@@ -39,7 +39,7 @@ function Card({ data }) {
         </p>
         <Link
           href={`/shop/${data.name}`}
-          className="pt-2 text-base font-semibold"
+          className="text-base font-semibold"
         >
           View item
         </Link>

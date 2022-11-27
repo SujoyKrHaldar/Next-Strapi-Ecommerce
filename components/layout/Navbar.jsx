@@ -68,12 +68,26 @@ function Navbar() {
         <nav className="flex items-center gap-3">
           <Link
             href="/search"
-            className="hidden md:block cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300"
+            className={`hidden md:block cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300
+            border
+            ${
+              router.pathname === "/search"
+                ? " border-black"
+                : "border-transparent"
+            } `}
           >
             <FiSearch />
           </Link>
 
-          <div className="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300">
+          <Link
+            href="/cart"
+            className={`cursor-pointer p-2 bg-gray-200 hover:bg-gray-300 border
+            ${
+              router.pathname === "/cart"
+                ? " border-black"
+                : "border-transparent"
+            } `}
+          >
             <div className="text-xl">
               <FiShoppingCart />
             </div>
@@ -83,9 +97,9 @@ function Navbar() {
             >
               9+
             </p>
-          </div>
+          </Link>
 
-          <div className="md:hidden cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300">
+          <div className="md:hidden cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300 border border-transparent">
             <FiMenu />
           </div>
         </nav>
