@@ -1,9 +1,8 @@
-import Head from "next/head";
-import ProductLists from "../components/home/ProductLists";
-import Landing from "../components/home/Landing";
-import Special from "../components/home/Special";
-import Banner from "../components/home/Banner";
-import Catagory from "../components/home/Catagory";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
+import FilteredProducts from "./FilteredProducts";
+import FilterOptions from "./FilterOptions";
 
 const trendingProducts = [
   {
@@ -46,36 +45,36 @@ const trendingProducts = [
   },
 ];
 
-const allProducts = [...trendingProducts, ...trendingProducts];
-
-export default function Home() {
+function Main() {
+  const router = useRouter();
   return (
-    <>
-      <Head>
-        <title>Devstore - Find your new favourite collections here</title>
-        <meta
-          name="description"
-          content="Devstore - Find your new favourite collections here"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <section className="py-16">
+      <div className="container space-y-6">
+        <div
+          className="w-full flex items-center gap-2 py-3 bg-white
+         sticky top-[4.5rem] border-b z-30 border-b-black"
+        >
+          <Link className="text-gray-500 hover:text-black" href="/">
+            Home
+          </Link>{" "}
+          -{" "}
+          <Link className="text-gray-500 hover:text-black" href="/category">
+            Collections
+          </Link>{" "}
+          - <p className="text-base">{router.query.slug}</p>
+        </div>
 
-      <Landing />
-      <ProductLists
-        tag="Most demanding"
-        name="Trending Products"
-        products={trendingProducts}
-        showBtn={false}
-      />
-      <Banner />
-      <Catagory />
-      <ProductLists
-        className="bg-gray-100"
-        tag="Regulars"
-        name="All Products"
-        products={allProducts}
-      />
-      <Special />
-    </>
+        <div className="flex items-start gap-8">
+          <div className="flex-0 sticky top-[8.6rem]">
+            <FilterOptions />
+          </div>
+          <div className="flex-1">
+            <FilteredProducts data={trendingProducts} />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
+
+export default Main;

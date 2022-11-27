@@ -23,11 +23,11 @@ const data = [
 
 function Catagory() {
   return (
-    <section className=" py-16">
+    <section className=" py-8">
       <div className="absolute w-full h-1/2 bg-gray-100 bottom-0 left-0"></div>
       <div className="container grid grid-cols-3 gap-4">
         {data.map((data) => (
-          <Catalog data={data} key={data.id} />
+          <Catalog data={data} key={data.id} className="even:-translate-y-28"/>
         ))}
       </div>
     </section>

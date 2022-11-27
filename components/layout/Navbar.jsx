@@ -30,7 +30,7 @@ function Navbar() {
   const router = useRouter();
 
   return (
-    <header className="fixed inset-0 z-50 w-screen h-min bg-white border-b border-black">
+    <header className="fixed inset-0 z-50 w-full h-min bg-white border-b border-black">
       {/* <section className="py-3 bg-gray-900 text-white">
         <div className="container flex justify-between items-center gap-4">
           <p className="text-sm">Spring 2022 sale is on. 50% off.</p>
@@ -55,8 +55,8 @@ function Navbar() {
               href={link.url}
               key={link.name}
               className={`uppercase text-sm hover:text-black duration-200 ${
-                router.pathname === link.url
-                  ? "text-black font-medium"
+                router.pathname === link.url || router.asPath === link.url
+                  ? "text-black font-semibold"
                   : "text-gray-600"
               }`}
             >
@@ -66,9 +66,12 @@ function Navbar() {
         </nav>
 
         <nav className="flex items-center gap-3">
-          <div className="hidden md:block cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300">
+          <Link
+            href="/search"
+            className="hidden md:block cursor-pointer text-xl p-2 bg-gray-200 hover:bg-gray-300"
+          >
             <FiSearch />
-          </div>
+          </Link>
 
           <div className="cursor-pointer p-2 bg-gray-200 hover:bg-gray-300">
             <div className="text-xl">

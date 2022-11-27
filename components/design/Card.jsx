@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Card({ data }) {
   return (
     <card className="space-y-4">
@@ -35,12 +37,12 @@ function Card({ data }) {
             maximumFractionDigits: 2,
           }).format(data.price)}
         </p>
-        {/* <Link
-          href={`/product/${Slug}`}
+        <Link
+          href={`/shop/${data.name}`}
           className="pt-2 text-base font-semibold"
         >
           View item
-        </Link> */}
+        </Link>
       </div>
     </card>
   );
