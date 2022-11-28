@@ -1,6 +1,7 @@
 function ProductAtCart({ data }) {
   return (
-    <card className="p-3 pr-5 bg-white border border-black flex items-center justify-between gap-2">
+    <card className="p-3 pr-5 bg-white border shadow-sm border-gray-200 hover:border-black hover:shadow-xl
+    flex items-center justify-between gap-2">
       <div className="flex items-center gap-4">
         <div className="w-[80px] h-[80px]">
           <img src={data.img} alt={data.name} className="object-top" />
