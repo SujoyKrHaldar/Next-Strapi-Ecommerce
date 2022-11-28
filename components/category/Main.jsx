@@ -49,20 +49,35 @@ function Main() {
   const router = useRouter();
 
   return (
-    <section className="py-16">
-      <div className="container space-y-6">
+    <section className="pt-0 pb-16">
+      <div className="container space-y-4">
         <div
-          className="w-full flex items-center gap-2 py-3 bg-white
-         sticky top-[4.5rem] border-b z-30 border-b-black"
+          className="w-full flex items-center justify-between gap-2 py-3 bg-white
+         border-b z-30 border-b-black"
         >
-          <Link className="text-gray-500 hover:text-black" href="/">
-            Home
-          </Link>{" "}
-          -{" "}
-          <Link className="text-gray-500 hover:text-black" href="/category">
-            Collections
-          </Link>{" "}
-          - <p className="text-base">{router.query.slug}</p>
+          <div className="flex items-center gap-2">
+            <Link
+              className="text-gray-500 text-sm hover:text-black uppercase"
+              href="/"
+            >
+              Home
+            </Link>{" "}
+            /{" "}
+            <Link
+              className="text-gray-500 text-sm hover:text-black uppercase"
+              href="/collection"
+            >
+              Collections
+            </Link>{" "}
+            / <p className="text-sm uppercase">{router.query.slug}</p>
+          </div>
+
+          <p
+            className="text-sm cursor-pointer px-3 py-1 bg-gray-200"
+            onClick={() => router.back()}
+          >
+            Go back
+          </p>
         </div>
 
         <div className="flex items-start gap-8">

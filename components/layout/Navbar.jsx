@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { FiShoppingCart, FiSearch, FiMenu } from "react-icons/fi";
 import { HiArrowSmRight } from "react-icons/hi";
+import { IoCloseOutline } from "react-icons/io5";
 
 const nav = [
   {
@@ -14,32 +16,48 @@ const nav = [
   },
   {
     name: "Women",
-    url: "/category/women",
+    url: "/collection/women",
   },
   {
     name: "Men",
-    url: "/category/men",
+    url: "/collection/men",
   },
   {
     name: "Kids",
-    url: "/category/kids",
+    url: "/collection/kids",
   },
 ];
 
 function Navbar() {
   const router = useRouter();
+  const [openModel, setOpenModel] = useState(true);
 
   return (
-    <header className="fixed inset-0 z-50 w-full h-min bg-white border-b border-black">
-      {/* <section className="py-3 bg-gray-900 text-white">
+    <header className="sticky top-0 z-50 w-full h-min bg-white border-b border-black">
+      <section
+        className={` bg-gray-900 text-white 
+      ${
+        openModel
+          ? "h-fit opacity-100 py-3"
+          : "h-0 overflow-hidden opacity-0 py-0"
+      }`}
+      >
         <div className="container flex justify-between items-center gap-4">
           <p className="text-sm">Spring 2022 sale is on. 50% off.</p>
-          <Link className="text-sm flex items-center gap-1" href="/shop">
-            Shop now
-            <HiArrowSmRight />
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link className="text-sm flex items-center gap-1" href="/shop">
+              Shop now
+              <HiArrowSmRight />
+            </Link>
+            <div
+              onClick={() => setOpenModel(!openModel)}
+              className="bg-gray-700 p-1 cursor-pointer"
+            >
+              <IoCloseOutline />
+            </div>
+          </div>
         </div>
-      </section> */}
+      </section>
 
       <section className="py-4 container flex items-center justify-between gap-4">
         <Link

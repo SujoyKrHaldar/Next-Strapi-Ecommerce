@@ -22,7 +22,7 @@ function Landing() {
   };
 
   return (
-    <section className="overflow-hidden w-full h-screen">
+    <section className="overflow-hidden w-full h-[700px]">
       <div
         style={{ transform: `translateX(-${currentView * 100}vw)` }}
         className="absolute inset-0 flex w-max h-full duration-700 ease-in-out"
@@ -50,7 +50,7 @@ function Landing() {
             </Link>
             <Link
               className="btn bg-gray-200 hover:bg-gray-300"
-              href="/category"
+              href="/collection"
             >
               Collections
             </Link>

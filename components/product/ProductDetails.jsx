@@ -29,16 +29,12 @@ function ProductDetails() {
 
         <div className="space-y-1">
           <p className="font-thin text-base">
-            <span className="font-bold">Brand : </span>
-            Gucci
-          </p>
-          <p className="font-thin text-base">
             <span className="font-bold">Category : </span>
             Women collection
           </p>
           <p className="font-thin text-base">
-            <span className="font-bold">Condition : </span>
-            Good
+            <span className="font-bold">Brand : </span>
+            Gucci
           </p>
           <p className="font-thin text-base">
             <span className="font-bold">Meterial : </span>
@@ -60,7 +56,7 @@ function ProductDetails() {
 
       <div
         onClick={addToFav}
-        className="flex items-center gap-2 cursor-pointer"
+        className="w-fit flex items-center gap-2 cursor-pointer"
       >
         {fav ? <AiFillHeart /> : <AiOutlineHeart />}
         <p className="text-sm uppercase">Add to favourites</p>

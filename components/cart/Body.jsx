@@ -4,7 +4,7 @@ import ProductList from "./ProductList";
 
 function Body() {
   return (
-    <section className="py-28">
+    <section className="pt-8 pb-28">
       {/* <div className="absolute w-full h-[230px] inset-0 bg-gray-100"></div> */}
       <div className="container space-y-6">
         <div className="flex items-end justify-between gap-2">

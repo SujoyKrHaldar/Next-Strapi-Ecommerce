@@ -1,10 +1,11 @@
 import Head from "next/head";
+import Main from "../../components/category/Main";
 
 function CategoryItems() {
   return (
     <>
       <Head>
-        <title>Shirts - Devstore</title>
+        <title>Explore Category's collections - Devstore</title>
         <meta
           name="description"
           content="Devstore - Find your new favourite collections here"
@@ -12,7 +13,7 @@ function CategoryItems() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="container">home - category - shirt</h1>
+      <Main />
     </>
   );
 }
