@@ -1,12 +1,9 @@
-import Link from "next/link";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import Link from "next/link";
 
-function ProductDetails() {
-  const router = useRouter();
-
+function ProductDetails({ data }) {
   const [quantity, setQuantity] = useState(1);
   const [fav, setFav] = useState(false);
 
@@ -16,41 +13,76 @@ function ProductDetails() {
   return (
     <section className="p-8 space-y-6">
       <div className="space-y-1">
-        <p className="tag">Women collections</p>
-        <h2 className="font-bold">{router.query.slug}</h2>
-
-        <p className="font-thin text-base text-justify">
-          <span className="font-bold">Description : </span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          cursus ut purus non elementum. Nunc convallis, quam quis interdum
-          consequat, erat augue accumsan orci, eget elementum odio mi non mi.
-          Aliquam bibendum eget quam et condimentum.
-        </p>
+        <p className="tag">{data?.tagline}</p>
+        <h2 className="font-bold">{data.title}</h2>
+        {data.description && (
+          <p className="font-thin text-base text-justify">
+            <span className="font-bold">Description : </span>
+            {data?.description}
+          </p>
+        )}
 
         <div className="space-y-1">
-          <p className="font-thin text-base">
-            <span className="font-bold">Category : </span>
-            Women collection
-          </p>
-          <p className="font-thin text-base">
-            <span className="font-bold">Brand : </span>
-            Gucci
-          </p>
-          <p className="font-thin text-base">
-            <span className="font-bold">Meterial : </span>
-            Silk
-          </p>
+          {data?.brand && (
+            <p className="font-thin text-base">
+              <span className="font-bold">Brand : </span>
+              {data.brand}
+            </p>
+          )}
+          {data?.meterial && (
+            <p className="font-thin text-base">
+              <span className="font-bold">Meterial : </span>
+              {data.meterial}
+            </p>
+          )}
+
+          {data?.collection?.data && (
+            <p className="font-thin text-base ">
+              <span className="font-bold">Collection : </span>
+              <span className="hover:text-red-500 font-medium duration-75">
+                <Link
+                  href={`/collection/${data?.collection?.data?.attributes.slug}`}
+                >
+                  {data?.collection?.data?.attributes.name} collection
+                </Link>
+              </span>
+            </p>
+          )}
+
+          {data?.categories?.data.length > 0 && (
+            <p className="font-thin text-base ">
+              <span className="font-bold">Collection : </span>
+              {data?.categories?.data.map((data) => (
+                <span
+                  key={data.id}
+                  className="hover:text-red-500 font-medium mr-1 last:mr-0 duration-75"
+                >
+                  <Link href={`/category/${data?.attributes.slug}`}>
+                    {data?.attributes.name}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          )}
         </div>
 
         <div className="pt-2 space-y-1">
           <p className="font-thin text-xl">
-            <span className="font-bold">Total Price : </span> $199.00
+            <span className="font-bold">Total Price : </span>
+            <span>
+              {Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 2,
+              }).format(data.price)}
+            </span>
           </p>
 
-          <p className="font-thin text-xl">
-            <span className="font-bold">In Stock : </span> Limited stocks -
-            Hurry up!
-          </p>
+          {!data.isinstock && (
+            <p className="font-thin text-xl text-red-600">
+              <span className="font-bold">Limited stocks - Hurry up!</span>
+            </p>
+          )}
         </div>
       </div>
 
@@ -85,7 +117,12 @@ function ProductDetails() {
       <div className="flex items-center gap-4">
         <div className="btn cursor-pointer  bg-gray-900 text-white">
           {" "}
-          Buy now - $199.00
+          Buy now -{" "}
+          {Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 2,
+          }).format(data.price)}
         </div>
         <div className="btn cursor-pointer bg-gray-200 flex items-center gap-2">
           <div className="text-xl">

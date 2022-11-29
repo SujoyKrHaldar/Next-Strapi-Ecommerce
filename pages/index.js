@@ -46,9 +46,31 @@ const trendingProducts = [
   },
 ];
 
-const allProducts = [...trendingProducts, ...trendingProducts];
+export const getStaticProps = async () => {
+  // const resProducts = await fetch(
+  //   `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/products`,
+  //   {
+  //     headers: {
+  //       Authorization:
+  //         "bearer " + process.env.NEXT_PUBLIC_STRAPI_CUSTOM_API_TOKEN,
+  //     },
+  //   }
+  // );
 
-export default function Home() {
+  const resCollections = await fetch(
+    `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/collections?populate[0]=thumbnail&populate[1]=coverphoto`
+  );
+
+  // const { data } = await resProducts.json();
+  const { data } = await resCollections.json();
+
+  return {
+    props: { collection: data },
+    revalidate: 10,
+  };
+};
+
+export default function Home({ collection }) {
   return (
     <>
       <Head>
@@ -61,20 +83,20 @@ export default function Home() {
       </Head>
 
       <Landing />
-      <ProductLists
+      {/* <ProductLists
         tag="Most demanding"
         name="Trending Products"
         products={trendingProducts}
         showBtn={false}
-      />
+      /> */}
       <Banner />
-      <Collection />
-      <ProductLists
+      <Collection data={collection} />
+      {/* <ProductLists
         className="bg-gray-100"
         tag="Regulars"
         name="All Products"
         products={allProducts}
-      />
+      /> */}
       <Special />
     </>
   );

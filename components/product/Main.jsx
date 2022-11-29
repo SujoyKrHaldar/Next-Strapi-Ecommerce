@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import ProductDetails from "./ProductDetails";
 import ProductImage from "./ProductImage";
 
-function Main() {
-  const router = useRouter();
-
+function Main({ data }) {
   return (
     <section className="pt-0 pb-16">
       <div className="container space-y-4">
@@ -27,7 +24,7 @@ function Main() {
             >
               Shop
             </Link>{" "}
-            / <p className="text-sm uppercase">{router.query.slug}</p>
+            / <p className="text-sm uppercase">{data.title}</p>
           </div>
 
           <p
@@ -40,10 +37,10 @@ function Main() {
 
         <div className="flex items-center gap-8">
           <div className="flex-1 sticky top-[8.6rem]">
-            <ProductImage />
+            <ProductImage data={data} />
           </div>
           <div className="flex-1">
-            <ProductDetails />
+            <ProductDetails data={data} />
           </div>
         </div>
       </div>

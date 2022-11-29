@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function FilterOptions() {
+function FilterOptions({ data }) {
   const [value, setValue] = useState(500);
   const [sort, setSort] = useState(null);
 
@@ -11,23 +11,21 @@ function FilterOptions() {
       </p>
 
       <div className="p-5 px-8 space-y-4">
-        <div className="space-y-1">
-          <p className="font-semibold">Category</p>
-          <div>
-            <div className="flex gap-2 items-center">
-              <input type="checkbox" id="1" value="1" />
-              <label className="font-thin" htmlFor="1">
-                Cloths
-              </label>
-            </div>
-            <div className="flex gap-2 items-center">
-              <input type="checkbox" id="2" value="2" />
-              <label className="font-thin" htmlFor="2">
-                Skirts
-              </label>
+        {data.categories.data?.length > 0 && (
+          <div className="space-y-1">
+            <p className="font-semibold">Category</p>
+            <div>
+              {data.categories.data.map((data) => (
+                <div key={data.id} className="flex gap-2 items-center">
+                  <input type="checkbox" id={data.id} value={data.id} />
+                  <label className="font-thin" htmlFor={data.id}>
+                    {data.attributes.name}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
 
         <div className="space-y-1">
           <p className="font-semibold">Price</p>

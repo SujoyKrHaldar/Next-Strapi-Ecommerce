@@ -2,9 +2,13 @@ import Link from "next/link";
 import React from "react";
 
 function Catalog({ data, className = "" }) {
+  const imgsrc =
+    data.thumbnail?.data?.attributes?.formats?.thumbnail.url ||
+    data.coverphoto?.data?.attributes?.formats?.large.url;
+
   return (
     <Link
-      href={data.url}
+      href={`/collection/${data.slug}`}
       className={`group p-4 border border-gray-200 hover:border-black bg-white ${className}`}
     >
       <card className="overflow-hidden flex items-center justify-center p-4 w-full h-[450px]">
@@ -17,8 +21,8 @@ function Catalog({ data, className = "" }) {
         </p>
         <div className="absolute inset-0 w-full h-full group-hover:scale-105">
           <img
-            src={data.img}
-            alt={data.name}
+            src={imgsrc}
+            alt={data.title}
             loading="lazy"
             className="object-top"
           />

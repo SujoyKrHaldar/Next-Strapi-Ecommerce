@@ -1,21 +1,32 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useFetch } from "../../components/hooks/useFetch";
 import Main from "../../components/product/Main";
 
-function product() {
-  const router = useRouter();
+export const getServerSideProps = async ({ params }) => {
+  const { slug } = params;
+  const { data } = await useFetch(
+    "/products?filters[Slug][$eq]=" + slug + "&populate=*"
+  );
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { data: data[0].attributes },
+  };
+};
+
+function product({ data }) {
   return (
     <>
       <Head>
-        <title>{router.query.slug} - Devstore</title>
-        <meta
-          name="description"
-          content="Devstore - Find your new favourite collections here"
-        />
+        <title> {data?.title} - Devstore</title>
+        <meta name="description" content={data.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main />
+      <Main data={data} />
     </>
   );
 }
