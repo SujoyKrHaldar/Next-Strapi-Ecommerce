@@ -3,10 +3,15 @@ import { useState } from "react";
 function ProductImage({ data }) {
   const [imgId, setImgId] = useState(0);
 
+  const mainImg =
+    data.productimages.data[imgId]?.attributes?.formats?.large?.url ||
+    data.productimages.data[imgId]?.attributes?.formats?.medium?.url ||
+    data.productimages.data[imgId]?.attributes?.formats?.thumbnail?.url;
+
   return (
     <section className="w-full h-[586px] border border-black overflow-hidden">
       <img
-        src={data.productimages.data[imgId].attributes.formats.thumbnail.url}
+        src={mainImg}
         alt="product name"
         className="duration-300 ease-out object-top"
       />
@@ -20,7 +25,11 @@ function ProductImage({ data }) {
           >
             <img
               onClick={() => setImgId(id)}
-              src={data.attributes.formats.thumbnail.url}
+              src={
+                data.attributes.formats.large?.url ||
+                data.attributes.formats.medium?.url ||
+                data.attributes.formats.thumbnail?.url
+              }
               alt={data.title}
               className={`cursor-pointer border-4 duration-300 ease-out ${
                 imgId === id ? "border-white" : "border-transparent"

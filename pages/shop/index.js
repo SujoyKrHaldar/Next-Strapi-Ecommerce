@@ -1,6 +1,17 @@
 import Head from "next/head";
+import Card from "../../components/design/Card";
+import { useFetch } from "../../components/hooks/useFetch";
 
-function shop() {
+export const getStaticProps = async () => {
+  const { data } = await useFetch("/products?populate=*");
+
+  return {
+    props: { data },
+    revalidate: 10,
+  };
+};
+
+function shop({ data }) {
   return (
     <>
       <Head>
@@ -13,6 +24,21 @@ function shop() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <section className="py-16">
+        <div className="container space-y-8">
+          <h2 className="font-bold">All Products</h2>
+          <div className="grid grid-cols-3 gap-4">
+            {data.map((data) => (
+              <Card
+                data={data.attributes}
+                key={data.id}
+                className="p-0 border-none bg-gray-200"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

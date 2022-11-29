@@ -22,13 +22,12 @@ function index({ data }) {
 
       <section className="py-16">
         <div className="container space-y-8">
-          <h2 className="font-bold">Latest Collection</h2>
           <div className="grid grid-cols-3 gap-4">
             {data.map((data) => (
               <Catalog
                 data={data.attributes}
                 key={data.id}
-                className="p-0 border-none"
+                className="p-0 border-none bg-gray-200"
               />
             ))}
           </div>

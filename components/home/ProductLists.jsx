@@ -17,7 +17,7 @@ function ProductLists({
         </div>
         <div className="grid grid-cols-4 gap-5">
           {products.map((data) => (
-            <Card data={data} key={data.id} />
+            <Card data={data.attributes} key={data.id} />
           ))}
         </div>
         {showBtn && (

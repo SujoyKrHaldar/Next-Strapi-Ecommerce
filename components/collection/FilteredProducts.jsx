@@ -1,7 +1,9 @@
 import Card from "../design/Card";
 
 function FilteredProducts({ data }) {
-  const imgsrc = data.coverphoto?.data?.attributes?.formats?.large.url;
+  const imgsrc =
+    data.coverphoto?.data?.attributes?.formats?.large?.url ||
+    data.coverphoto?.data?.attributes?.formats?.medium?.url;
 
   return (
     <section className="space-y-8">

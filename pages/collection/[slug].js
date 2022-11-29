@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Main from "../../components/category/Main";
+import Main from "../../components/collection/Main";
 import { useFetch } from "../../components/hooks/useFetch";
 
 const populatesHiddens = "&populate[0]=coverphoto&populate[1]=categories";

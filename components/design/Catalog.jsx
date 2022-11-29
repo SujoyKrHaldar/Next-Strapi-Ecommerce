@@ -3,8 +3,10 @@ import React from "react";
 
 function Catalog({ data, className = "" }) {
   const imgsrc =
-    data.thumbnail?.data?.attributes?.formats?.thumbnail.url ||
-    data.coverphoto?.data?.attributes?.formats?.large.url;
+    // data.thumbnail?.data?.attributes?.formats?.large?.url ||
+    data.thumbnail?.data?.attributes?.formats?.medium?.url ||
+    // data.coverphoto?.data?.attributes?.formats?.large?.url ||
+    data.coverphoto?.data?.attributes?.formats?.medium?.url;
 
   return (
     <Link

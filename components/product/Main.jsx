@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import ProductDetails from "./ProductDetails";
 import ProductImage from "./ProductImage";
 
 function Main({ data }) {
+  const router = useRouter();
   return (
     <section className="pt-0 pb-16">
       <div className="container space-y-4">

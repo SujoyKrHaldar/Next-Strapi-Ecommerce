@@ -2,8 +2,14 @@ import Link from "next/link";
 import { IoMdAdd } from "react-icons/io";
 
 function Card({ data }) {
-  const primaryImg = data.mainimage?.data?.attributes?.formats?.thumbnail.url;
+  const primaryImg =
+    data.mainimage?.data?.attributes?.formats?.large?.url ||
+    data.mainimage?.data?.attributes?.formats?.medium?.url ||
+    data.mainimage?.data?.attributes?.formats?.thumbnail?.url;
+
   const secondaryImg =
+    data.secondaryimage?.data?.attributes?.formats?.large?.url ||
+    data.secondaryimage?.data?.attributes?.formats?.medium?.url ||
     data.secondaryimage?.data?.attributes?.formats?.thumbnail.url;
 
   return (
@@ -21,7 +27,7 @@ function Card({ data }) {
           </p>
         )}
       </div>
-      <div className="w-full h-[300px] bg-white">
+      <div className="w-full h-[230px] bg-white border border-gray-200">
         <img
           loading="lazy"
           src={primaryImg}
